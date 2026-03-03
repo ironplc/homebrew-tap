@@ -14,17 +14,17 @@
 # The formula assumes releases are from the GitHub ironplc/ironplc repository
 # and that releases are prefixed with "v".
 class Ironplc < Formula
-    version "0.159.0"
+    version "0.160.0"
     desc "IronPLC Compiler"
     homepage "https://www.ironplc.com"
     license = "MIT"
   
     if OS.mac?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.159.0/ironplcc-x86_64-macos.tar.gz"
-        sha256 "6dfa136d6d9f7bdc1de35fb8cdf5c306ef5c608a7684be8fa57d581ac71afde9"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.160.0/ironplcc-x86_64-macos.tar.gz"
+        sha256 "5ad1980d28dc809d6e99fb82ddfb7d0f4725901c86991f44fc7be6c6d45f95a8"
     elsif OS.linux?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.159.0/ironplcc-x86_64-linux-musl.tar.gz"
-        sha256 "49306090881a9bb2e93ca9a67b8ff5d35dabac39ccc5749f0f21883621d69a69"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.160.0/ironplcc-x86_64-linux-musl.tar.gz"
+        sha256 "9e799f0b3df2afdfe74327c31163a77537174b211037ed05c4a97936a8490ac7"
     end
   
     def install
