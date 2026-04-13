@@ -14,21 +14,22 @@
 # The formula assumes releases are from the GitHub ironplc/ironplc repository
 # and that releases are prefixed with "v".
 class Ironplc < Formula
-    version "0.192.0"
+    version "0.198.0"
     desc "IronPLC Compiler"
     homepage "https://www.ironplc.com"
     license = "MIT"
   
     if OS.mac?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.192.0/ironplcc-x86_64-macos.tar.gz"
-        sha256 "12b00593c3fb5bd03a4a0a629610f3bedc6ef5346d414433f108494822ae1c2f"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.198.0/ironplcc-x86_64-macos.tar.gz"
+        sha256 "fe9f868037e3f7bd01df4885f873a4ab98c6eebd729c88b91d941426e0075df3"
     elsif OS.linux?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.192.0/ironplcc-x86_64-linux-musl.tar.gz"
-        sha256 "0f5a8c087ff514a0c5e96cea34ae1abe186d06154d18563c03ddbeb47927455c"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.198.0/ironplcc-x86_64-linux-musl.tar.gz"
+        sha256 "91029eb9269505fe0432ddf055f1ecf41249e563f725ae064c9cb34a8cd481b0"
     end
   
     def install
       bin.install "ironplcc"
       bin.install "ironplcvm"
+      bin.install "ironplcmcp"
     end
   end
