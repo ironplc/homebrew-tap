@@ -14,22 +14,28 @@
 # The formula assumes releases are from the GitHub ironplc/ironplc repository
 # and that releases are prefixed with "v".
 class Ironplc < Formula
-    version "0.233.0"
+    version "0.234.0"
     desc "IronPLC Compiler"
     homepage "https://www.ironplc.com"
     license "MIT"
   
     if OS.mac?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.233.0/ironplcc-x86_64-macos.tar.gz"
-        sha256 "093ba9a425b5417034f0159ee50be922ff5e437638dbca6b5b83333dc48e4bfb"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.234.0/ironplcc-x86_64-macos.tar.gz"
+        sha256 "15ea2998a1234b117064d285e20bb962b2a6252df2a71f42ac24ab96384ad627"
     elsif OS.linux?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.233.0/ironplcc-x86_64-linux-musl.tar.gz"
-        sha256 "737688aaa60148bdc2380d1e6f9370d47ee1d971fdbcb66ff92f6328beb2f2c4"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.234.0/ironplcc-x86_64-linux-musl.tar.gz"
+        sha256 "f796e0f0134b8e40630cfe208b72dcb7d29f415e783380bd0008c1ae4cbb9dc6"
     end
   
     def install
-      bin.install "ironplcc"
-      bin.install "ironplcvm"
-      bin.install "ironplcmcp"
+      # Keep the binaries and their runtime resources together in libexec, then
+      # symlink the executables onto the PATH. The compiler reads its bundled
+      # compatibility libraries from <exedir>/resources/libs at runtime, and
+      # current_exe() resolves the bin symlink back to libexec -- so the
+      # libraries must sit beside the real binaries here, not in bin.
+      libexec.install "ironplcc", "ironplcvm", "ironplcmcp", "resources"
+      bin.install_symlink libexec/"ironplcc"
+      bin.install_symlink libexec/"ironplcvm"
+      bin.install_symlink libexec/"ironplcmcp"
     end
   end
