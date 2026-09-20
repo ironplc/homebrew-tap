@@ -14,17 +14,17 @@
 # The formula assumes releases are from the GitHub ironplc/ironplc repository
 # and that releases are prefixed with "v".
 class Ironplc < Formula
-    version "0.241.0"
+    version "0.245.0"
     desc "IronPLC Compiler"
     homepage "https://www.ironplc.com"
     license "MIT"
   
     if OS.mac?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.241.0/ironplcc-x86_64-macos.tar.gz"
-        sha256 "7191f861e4d3164dfc10b6e81561dfcb05438d7c300bc65fa91c910b25bd8026"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.245.0/ironplcc-x86_64-macos.tar.gz"
+        sha256 "ccae24fb5978dad0f630e163a9f1beb502d4ff4cc2303303e28e616643f09408"
     elsif OS.linux?
-        url "https://github.com/ironplc/ironplc/releases/download/v0.241.0/ironplcc-x86_64-linux-musl.tar.gz"
-        sha256 "7339d862d137def67c401647236cd4417557ee8c19f0891f5ce7faaab33c6449"
+        url "https://github.com/ironplc/ironplc/releases/download/v0.245.0/ironplcc-x86_64-linux-musl.tar.gz"
+        sha256 "c2865d30dbb62dcf427038d632473518b1ead49befcf9b106087a672178da43e"
     end
   
     def install
@@ -33,7 +33,8 @@ class Ironplc < Formula
       # compatibility libraries from <exedir>/resources/libs at runtime, and
       # current_exe() resolves the bin symlink back to libexec -- so the
       # libraries must sit beside the real binaries here, not in bin.
-      libexec.install "ironplcc", "ironplcvm", "ironplcmcp", "ironplcvmd", "resources"
+      # The SBOM sits beside the binaries it describes.
+      libexec.install "ironplcc", "ironplcvm", "ironplcmcp", "ironplcvmd", "resources", "bom.cdx.json"
       bin.install_symlink libexec/"ironplcc"
       bin.install_symlink libexec/"ironplcvm"
       bin.install_symlink libexec/"ironplcmcp"
